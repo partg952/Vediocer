@@ -22,6 +22,7 @@ class second : Fragment() {
         var text = view.findViewById<TextView>(R.id.textView2)
         var add = view.findViewById<FloatingActionButton>(R.id.floatingActionButton)
         
+        
         text.text = FirebaseAuth.getInstance().currentUser?.email.toString()
         
         add.setOnClickListener {

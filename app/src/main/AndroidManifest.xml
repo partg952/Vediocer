@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Vediocer">
+        <activity android:name=".members"></activity>
         <activity android:name=".addimage">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity2"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity2" />
         </activity>
         <activity android:name=".MainActivity2">
             <intent-filter>
@@ -25,7 +27,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
