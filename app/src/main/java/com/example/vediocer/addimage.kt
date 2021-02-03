@@ -1,15 +1,13 @@
 package com.example.vediocer
 
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.MediaController
-import android.widget.VideoView
+import android.widget.*
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -27,6 +25,15 @@ class addimage : AppCompatActivity() {
     var upload = findViewById<ImageButton>(R.id.imageButton2)
    imageView = findViewById(R.id.videoView)
   
+  
+    var media = MediaController(this)
+    media.setAnchorView(imageView)
+    imageView.setMediaController(media)
+  
+    imageView.setOnClickListener {
+      imageView.requestFocus()
+      imageView.start()
+    }
   
   
     var getdata = object : ValueEventListener {
@@ -68,31 +75,37 @@ class addimage : AppCompatActivity() {
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     if(requestCode==49&&resultCode==Activity.RESULT_OK&&data!=null){
      var data = data.data
-      var media = MediaController(this)
-      media.setAnchorView(imageView)
-      imageView.setMediaController(media)
+     
       imageView.setVideoURI(uri)
       uri=data
-      imageView.requestFocus()
-      imageView.start()
+      
+      
     }
     super.onActivityResult(requestCode, resultCode, data)
   }
   private fun upload(){
+    var pg = ProgressDialog(this)
+    pg.setTitle("Video Uploading...")
+    pg.setCancelable(false)
     num2++
     var filename = UUID.randomUUID().toString()
       var ref = FirebaseStorage.getInstance().getReference().child("images").child("$filename")
       var ref2 = FirebaseDatabase.getInstance().getReference().child("images").child("$num2")
       var ref3 = FirebaseDatabase.getInstance().getReference().child("images").child("num")
       Log.d("Main2","$filename")
-      ref.putFile(uri!!).addOnSuccessListener {
+      ref.putFile(uri!!).addOnProgressListener {
+        pg.show()
+      }.addOnSuccessListener {
+        pg.hide()
           ref.downloadUrl.addOnCompleteListener {
             if(it.isSuccessful){
              Log.d("Main2","Done!!" )
               var result = it.result.toString()
               ref3.setValue(num2)
               Log.d("Main2","$result")
-              ref2.setValue(result)
+              ref2.setValue(result).addOnSuccessListener {
+                Toast.makeText(applicationContext,"Video Uploaded!",Toast.LENGTH_SHORT).show()
+              }
             }
           }
       }
