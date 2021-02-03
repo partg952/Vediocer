@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Vediocer">
-        <activity android:name=".members"></activity>
+        <activity android:name=".members">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity2"/>
+        </activity>
         <activity android:name=".addimage">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

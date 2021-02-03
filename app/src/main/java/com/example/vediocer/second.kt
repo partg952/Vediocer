@@ -21,13 +21,17 @@ class second : Fragment() {
         var view = inflater.inflate(R.layout.fragment_second, container, false)
         var text = view.findViewById<TextView>(R.id.textView2)
         var add = view.findViewById<FloatingActionButton>(R.id.floatingActionButton)
-        
+        var members = view.findViewById<FloatingActionButton>(R.id.floatingActionButton2)
         
         text.text = FirebaseAuth.getInstance().currentUser?.email.toString()
         
         add.setOnClickListener {
         var intent = Intent(requireContext(),addimage::class.java)
             startActivity(intent)
+        }
+        members.setOnClickListener {
+            var inent = Intent(requireContext(),members::class.java)
+            startActivity(inent)
         }
         
     return view
