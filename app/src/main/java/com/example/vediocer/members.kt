@@ -14,7 +14,7 @@ class members : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_members)
     var list = findViewById<ListView>(R.id.list)
-    var ref = FirebaseDatabase.getInstance().getReference()
+    var ref = FirebaseDatabase.getInstance().getReference().child("users")
     var array = arrayListOf<String>()
     var adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,array)
     list.adapter = adapter

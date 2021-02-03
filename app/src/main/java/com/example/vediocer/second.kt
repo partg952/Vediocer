@@ -30,7 +30,7 @@ class second : Fragment() {
             startActivity(intent)
         }
         members.setOnClickListener {
-            var inent = Intent(requireContext(),members::class.java)
+            var inent = Intent(requireContext(),com.example.vediocer.members::class.java)
             startActivity(inent)
         }
         

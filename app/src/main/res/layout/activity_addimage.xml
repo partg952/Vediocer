@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".addimage">
+    tools:context=".addimage"
+    android:background="@drawable/background">
 
     <ImageButton
+        android:background="@drawable/background"
         android:id="@+id/imageButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,6 +21,7 @@
         app:srcCompat="@drawable/ic_baseline_add_photo_alternate_24" />
 
     <ImageButton
+        android:background="@drawable/background"
         android:id="@+id/imageButton2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,6 +31,7 @@
         app:srcCompat="@drawable/ic_baseline_cloud_upload_24" />
 
     <VideoView
+        android:background="@drawable/background"
         android:id="@+id/videoView"
         android:layout_width="0dp"
         android:layout_height="0dp"
